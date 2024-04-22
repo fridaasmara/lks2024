@@ -35,34 +35,34 @@
             <h3 class="fw-bold">Kelola Obat</h3>
             <div class="form col-md-6 offset-md-3">
                 <div class="text-center"><h4>Tambah Obat</h4></div>
-                <form class="my-5 p-5 rounded shadow">
+                <form @submit.prevent="tambahObat" class="my-5 p-5 rounded shadow">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Kode Obat</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                        <input v-model="form.Kode_Obat" type="text" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Nama Obat</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                        <input v-model="form.Nama_Obat" type="text" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Expired Date</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1">
+                        <input v-model="form.Expired_Date" type="date" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Jumlah</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1">
+                                <input v-model="form.Jumlah" type="number" class="form-control" id="exampleFormControlInput1">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Harga</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1">
+                                <input v-model="form.Harga" type="number" class="form-control" id="exampleFormControlInput1">
                             </div>
                         </div>
                         <div class="text-center">
-                            <div class="btn btn-primary mt-4">Tambah</div>
+                            <button type="submit" class="btn btn-primary mt-4">Tambah</button>
                         </div>
                     </div>
                 </form>
@@ -71,7 +71,26 @@
 </template>
 
 <script setup>
+const supabase = useSupabaseClient()
+const form = ref ({
+    Kode_Obat: "",
+    Nama_Obat: "",
+    Expired_Date: "",
+    Jumlah: "",
+    Harga: "",
+})
 
+const tambahObat = async () => {
+    // console.log(form.value)
+    const { error } = await supabase
+    .from('Tbl_Obat')
+    .insert([
+        form.value,
+    ])
+
+    if(!error) navigateTo ('/obat')
+
+}
 </script>
 
 <style scoped>

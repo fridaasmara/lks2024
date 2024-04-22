@@ -36,8 +36,6 @@
 
     <p>Menampilkan : 1 dari 1 user</p>
 
-    
-
     <div class="row d-flex justify-content-center">
         <div class="col-md-9 input">
             <div class="input-group flex-nowrap rounded">
