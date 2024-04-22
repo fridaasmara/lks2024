@@ -63,14 +63,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>R001</td>
-                <td>18/04/2024</td>
-                <td>Dita Nur Sabila</td>
-                <td>Dr. Indah</td>
-                <td>Amoxilin</td>
-                <td>2</td>
+            <tr v-for="(resep, i) in reseps" :key="i">
+                <td>{{ i + 1 }}</td>
+                <td>{{ resep.No_Resep }}</td>
+                <td>{{ resep.Tgl_Resep }}</td>
+                <td>{{ resep.Nama_Pasien }}</td>
+                <td>{{ resep.Nama_Dokter }}</td>
+                <td>{{ resep.Obat_Resep }}</td>
+                <td>{{ resep.Jumlah_Obat }}</td>
                 <td><i class="bi bi-x-circle text-danger"></i></td>
             </tr>
         </tbody>
@@ -78,7 +78,20 @@
 </template>
 
 <script setup>
+const supabase = useSupabaseClient()
 
+const reseps = ref ([])
+
+const getResep = async () => { 
+    const { data, error } = await supabase
+        .from('Tbl_DataResep')
+        .select('*')
+    if(data) reseps.value = data
+}
+
+onMounted(() => {
+    getResep()
+})
 </script>
 
 <style scoped>

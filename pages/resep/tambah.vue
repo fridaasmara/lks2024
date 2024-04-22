@@ -25,38 +25,38 @@
             <h3 class="fw-bold">Kelola Resep</h3>
             <div class="form col-md-6 offset-md-3">
                 <div class="text-center"><h4>Tambah Resep</h4></div>
-                <form class="my-5 p-5 rounded shadow">
+                <form @submit.prevent="tambahResep" class="my-5 p-5 rounded shadow">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">No Resep</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                        <input v-model="form.No_Resep" type="text" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Tanggal Resep</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1">
+                        <input v-model="form.Tgl_Resep" type="date" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Nama Pasien</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                        <input v-model="form.Nama_Pasien" type="text" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Nama Dokter</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                        <input v-model="form.Nama_Dokter" type="text" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Resep Obat</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1">
+                                <input v-model="form.Obat_Resep" type="text" class="form-control" id="exampleFormControlInput1">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Jumlah</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1">
+                                <input v-model="form.Jumlah_Obat" type="number" class="form-control" id="exampleFormControlInput1">
                             </div>
                         </div>
                         <div class="text-center">
-                            <div class="btn btn-primary mt-4">Tambah</div>
+                            <button class="btn btn-primary mt-4">Tambah</button>
                         </div>
                     </div>
                 </form>
@@ -65,7 +65,27 @@
 </template>
 
 <script setup>
+const supabase = useSupabaseClient()
+const form = ref ({
+    No_Resep: "",
+    Tgl_Resep: "",
+    Nama_Pasien: "",
+    Nama_Dokter: "",
+    Obat_Resep: "",
+    Jumlah_Obat: "",
+})
 
+const tambahResep = async () => {
+    // console.log(form.value)
+    const { error } = await supabase
+    .from('Tbl_DataResep')
+    .insert([
+        form.value,
+    ])
+
+    if(!error) navigateTo ('/resep')
+
+}
 </script>
 
 <style scoped>

@@ -34,7 +34,7 @@
 
     <h3 class="fw-bold">Kelola Obat</h3>
 
-    <p>Menampilkan : 1 dari 1 obat</p>
+    <p>Menampilkan : 1 dari obat</p>
 
     <div class="row d-flex justify-content-center">
         <div class="col-md-9 input">
@@ -72,13 +72,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Amoxi</td>
-                <td>Amoxilin</td>
-                <td>18/04/2025</td>
-                <td>20</td>
-                <td>Harga</td>
+            <tr v-for="(obat, i) in obats" :key="i">
+                <td>{{ i + 1 }}</td>
+                <td>{{ obat.Kode_Obat }}</td>
+                <td>{{ obat.Nama_Obat }}</td>
+                <td>{{ obat.Expired_Date }}</td>
+                <td>{{ obat.Jumlah }}</td>
+                <td>{{ obat.Harga }}</td>
                 <td><i class="bi bi-x-circle text-danger"></i></td>
             </tr>
         </tbody>
@@ -86,7 +86,20 @@
 </template>
 
 <script setup>
+const supabase = useSupabaseClient()
 
+const obats = ref ([])
+
+const getObat = async () => { 
+    const { data, error } = await supabase
+        .from('Tbl_Obat')
+        .select('*')
+    if(data) obats.value = data
+}
+
+onMounted(() => {
+    getObat()
+})
 </script>
 
 <style scoped>
