@@ -13,7 +13,19 @@ async function logout() {
     if(!error) navigateTo("/login")
 }
 
+async function insertLog() {
+    const user = useSupabaseUser()
+    const { error } = await supa
+    .from('LogActifity')
+    .insert([{
+        Aktifitas: 'Logout',
+        nama: user.value.user_metadata.nama
+    }])
+
+    if(!error) logout()
+}
+
 onMounted(() => {
-    logout()
+    insertLog()
 })
 </script>

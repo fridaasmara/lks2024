@@ -38,7 +38,20 @@ async function SignIn() {
     email: email.value,
     password: password.value,
   })
-  if (data) navigateTo ("/")
+  if (data) {
+    navigateTo ("/")
+    const user = useSupabaseUser()
+    insertLog(user)
+  }
+}
+
+async function insertLog(user) {
+    const { error } = await supa
+    .from('LogActifity')
+    .insert([{
+        Aktifitas: 'Login',
+        nama: user.value.user_metadata.nama
+    }])
 }
 
 </script>

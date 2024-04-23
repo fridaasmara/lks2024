@@ -1,10 +1,10 @@
 <template>
-    <nav class="navbar shadow p-3 fixed-top navbar-expand-lg bg-light">
+    <!-- <nav class="navbar shadow p-3 fixed-top navbar-expand-lg bg-light">
         <div class="container-fluid">
             <h1 class="navbar-brand fw-bold" href="#">Admin</h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button> -->
             <!-- <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -29,8 +29,8 @@
                     </li>
                 </ul>
             </div> -->
-        </div>
-    </nav>
+        <!-- </div>
+    </nav> -->
 
     <h3 class="fw-bold">Kelola User</h3>
 
@@ -90,7 +90,7 @@ const user = useSupabaseUser()
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kavoon&family=Miltonian+Tattoo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.navbar {
+/* .navbar {
     margin-top: 8em;
 }
 
@@ -100,7 +100,7 @@ const user = useSupabaseUser()
 
 .nav-item {
     margin-left: 2rem;
-}
+} */
 
 h3 {
     margin-top: 18rem;

@@ -8,22 +8,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <nuxt-link to="/user">
-                            <a class="nav-link">User</a>
+                        <nuxt-link to="/user" class="nav-link">
+                            User
                         </nuxt-link>
                     </li>
                     <li class="nav-item">
-                        <nuxt-link to="/obat">
-                            <a class="nav-link" >Obat</a>
+                        <nuxt-link to="/obat" class="nav-link">
+                            Obat
                         </nuxt-link>
                     </li>
                     <li class="nav-item">
-                        <nuxt-link to="/laporan">
-                            <a class="nav-link">Laporan</a>
+                        <nuxt-link to="/laporan" class="nav-link">
+                            Laporan
                         </nuxt-link>
                     </li>
-                    <li class="nav-item">
-                            <a class="nav-link text-danger">Logout</a>
+                    <li class="nav-item text-danger">
+                        <nuxt-link to="/logout" class="nav-link">
+                            Logout
+                        </nuxt-link>
                     </li>
                 </ul>
             </div>
@@ -32,7 +34,7 @@
 </template>
 
 <script setup>
-
+const user = useSupabaseUser()
 
 </script>
 
@@ -51,7 +53,7 @@
     margin-left: 2rem;
 }
 
-a {
+.nav-link {
     font-weight: 500;
     font-size: 1rem;
 }

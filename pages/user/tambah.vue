@@ -1,9 +1,9 @@
 <template>
-    <nav class="navbar shadow p-3 fixed-top navbar-expand-lg bg-light">
+    <!-- <nav class="navbar shadow p-3 fixed-top navbar-expand-lg bg-light">
         <div class="container-fluid">
             <h1 class="navbar-brand fw-bold" href="#">Admin</h1>
         </div>
-    </nav>
+    </nav> -->
     <div class="container-fluid">
         <h3 class="fw-bold">Kelola User</h3>
         <div class="form col-md-6 offset-md-3">
@@ -69,15 +69,18 @@ async function tambahUser() {
         }
     })
 
-    if(data) console.log("success: 200")
-    if(error) throw error
+    if(data) {
+        const { error } = await supa.auth.signOut()
+        navigateTo('/login')
+    }
+    // if(error) throw error
 }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kavoon&family=Miltonian+Tattoo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.navbar {
+/* .navbar {
     margin-top: 8rem;
 }
 
@@ -87,7 +90,7 @@ async function tambahUser() {
 
 .nav-item {
     margin-left: 2rem;
-}
+} */
 
 /* .container-fluid {
     margin-top: 8.5rem;
